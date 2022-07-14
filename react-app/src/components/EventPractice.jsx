@@ -28,7 +28,10 @@ const EventPractice = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const nextForm = { ...form, [name]: value };
+    const nextForm = {
+      ...form,
+      [name]: value,
+    };
     setForm(nextForm);
   };
 
