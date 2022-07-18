@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const IterationSample = () => {
+const IterationSample = ({ name }) => {
   const [text, setText] = useState("");
   const [names, setNames] = useState([
     { id: 1, text: "얼음" },

@@ -1,10 +1,10 @@
-import IterationSample from "./components/IterationSample";
+import IterationSample from "./components/Average";
 
 function App() {
   const name1 = "리액트";
   return (
     <>
-      <IterationSample />
+      <IterationSample name={name1} />
     </>
   );
 }
