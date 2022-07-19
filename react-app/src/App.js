@@ -1,4 +1,4 @@
-import IterationSample from "./components/Average";
+import IterationSample from "./components/Flex";
 
 function App() {
   const name1 = "리액트";
