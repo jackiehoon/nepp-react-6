@@ -1,10 +1,9 @@
-import IterationSample from "./components/Flex";
+import Todo from "./components/Todo";
 
 function App() {
-  const name1 = "리액트";
   return (
     <>
-      <IterationSample name={name1} />
+      <Todo />
     </>
   );
 }
