@@ -4,7 +4,6 @@ const Counter2 = () => {
   const [number, setNumber] = useState(7);
 
   const handleClick = (n) => {
-    alert("추가하였습니다.");
     setNumber(number + n);
   };
 

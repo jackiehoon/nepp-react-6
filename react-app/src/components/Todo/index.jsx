@@ -27,12 +27,9 @@ const Todo = () => {
   };
 
   const handleChecked = (id) => {
-    const nextTodo = todos.map((todo) => {
-      if (todo.id === id) {
-        todo.checked = !todo.checked;
-      }
-      return todo;
-    });
+    const nextTodo = todos.map((todo) =>
+      todo.id === id ? { ...todo, checked: !todo.checked } : todo
+    );
     setTodos(nextTodo);
   };
 

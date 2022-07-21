@@ -5,16 +5,19 @@ const Form = ({ onAdd }) => {
   // 입력관리
   const [text, setText] = useState("");
 
-  const handleClick = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     onAdd(text);
     setText("");
   };
 
   return (
-    <InputWrapper>
-      <Input onChange={(e) => setText(e.target.value)} value={text} />
-      <BtnSubmit onClick={handleClick}>+</BtnSubmit>
-    </InputWrapper>
+    <form onSubmit={handleSubmit}>
+      <InputWrapper>
+        <Input onChange={(e) => setText(e.target.value)} value={text} />
+        <BtnSubmit>+</BtnSubmit>
+      </InputWrapper>
+    </form>
   );
 };
 
