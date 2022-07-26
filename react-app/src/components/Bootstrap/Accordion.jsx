@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled, { css } from "styled-components";
 
 const Accordion = ({ data }) => {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(-1);
 
   const handleClick = (i) => {
     const nextIndex = index === i ? -1 : i;

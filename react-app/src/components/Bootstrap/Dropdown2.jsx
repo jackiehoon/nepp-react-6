@@ -2,19 +2,19 @@ import { useRef } from "react";
 import styled from "styled-components";
 import useDropdown from "../../hooks/useDropdown";
 
-const Dropdown = () => {
+const Dropdown2 = () => {
   const wrapperEl = useRef(null);
   const [show, setShow] = useDropdown(wrapperEl);
 
   return (
     <Wrapper ref={wrapperEl}>
-      <Button onClick={() => setShow(!show)}>Dropdown Button</Button>
+      <Button onClick={() => setShow(!show)}>Dropdown Button2</Button>
 
       {show && (
         <List>
-          <Item>Action</Item>
-          <Item>Another Action</Item>
-          <Item>Something else</Item>
+          <Item>asdfasdf</Item>
+          <Item>ewrwon</Item>
+          <Item>Somewerwerg else</Item>
         </List>
       )}
     </Wrapper>
@@ -52,4 +52,4 @@ const Item = styled.div`
   }
 `;
 
-export default Dropdown;
+export default Dropdown2;
