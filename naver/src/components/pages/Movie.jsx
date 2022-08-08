@@ -3,39 +3,50 @@ import { useEffect } from "react";
 import styled from "styled-components";
 
 import { getMovies } from "../../apis";
+import Form from "../templates/Movie/Form";
 
 // useEffect(() => {
-//     // IIFE
-//     (async () => {
-//       const result = await getMovies();
-//       console.log(result);
-//     })();
-//   }, []);
+//   // IIFE
+//   (async (number) => {
+//     const result = await getMovies();
+//     console.log(result);
+//   })(1);
+// }, []);
 
 const Movie = () => {
   const [items, setItems] = useState([]);
+  const [params, setParams] = useState({ query: "", country: "all" });
+
+  const { query, country } = params;
+
   useEffect(() => {
     refreshList();
-  }, []);
+  }, [params]);
 
   const refreshList = async () => {
-    const result = await getMovies();
+    const params = { query };
+    if (country !== "all") {
+      params.country = country;
+    }
+    const result = await getMovies(params);
     setItems(result.items);
+  };
+
+  const handleChange = ({ name, value }) => {
+    const newParams = { ...params, [name]: value };
+    setParams(newParams);
   };
 
   return (
     <>
       <h1>영화 검색</h1>
-      <Form>
-        <Input />
-        <BtnSearch>검색</BtnSearch>
-      </Form>
+      <Form data={params} onChange={handleChange} />
       <List>
         {items.map(({ link, image, title }) => (
           <Item key={link}>
             <Thumbnail src={image} />
             <a href={link} target="_blank" rel="noreferrer">
-              <Name>{title}</Name>
+              <Name dangerouslySetInnerHTML={{ __html: title }} />
             </a>
           </Item>
         ))}
@@ -44,15 +55,6 @@ const Movie = () => {
   );
 };
 
-const Form = styled.form`
-  margin: 20px;
-  display: flex;
-`;
-const Input = styled.input`
-  flex: 1;
-  margin-right: 10px;
-`;
-const BtnSearch = styled.button``;
 const List = styled.div`
   margin: 20px;
   display: grid;
@@ -63,6 +65,6 @@ const Item = styled.div``;
 const Thumbnail = styled.img`
   width: 100%;
 `;
-const Name = styled.h4``;
+const Name = styled.p``;
 
 export default Movie;
