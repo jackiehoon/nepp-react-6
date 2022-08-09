@@ -21,7 +21,9 @@ const Form = ({ data, onChange }) => {
         <select onChange={handleCountry} value={data.country}>
           <option value="all">전체</option>
           {countries.map(({ code, name }) => (
-            <option value={code}>{name}</option>
+            <option key={code} value={code}>
+              {name}
+            </option>
           ))}
         </select>
         <Input onChange={(e) => setText(e.target.value)} value={text} />

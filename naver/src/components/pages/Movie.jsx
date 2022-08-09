@@ -1,9 +1,8 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import styled from "styled-components";
+import { useState, useEffect } from "react";
 
 import { getMovies } from "../../apis";
 import Form from "../templates/Movie/Form";
+import List from "../templates/Movie/List";
 
 // useEffect(() => {
 //   // IIFE
@@ -24,6 +23,8 @@ const Movie = () => {
   }, [params]);
 
   const refreshList = async () => {
+    if (!query) return;
+
     const params = { query };
     if (country !== "all") {
       params.country = country;
@@ -41,30 +42,9 @@ const Movie = () => {
     <>
       <h1>영화 검색</h1>
       <Form data={params} onChange={handleChange} />
-      <List>
-        {items.map(({ link, image, title }) => (
-          <Item key={link}>
-            <Thumbnail src={image} />
-            <a href={link} target="_blank" rel="noreferrer">
-              <Name dangerouslySetInnerHTML={{ __html: title }} />
-            </a>
-          </Item>
-        ))}
-      </List>
+      <List data={items} />
     </>
   );
 };
-
-const List = styled.div`
-  margin: 20px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
-`;
-const Item = styled.div``;
-const Thumbnail = styled.img`
-  width: 100%;
-`;
-const Name = styled.p``;
 
 export default Movie;

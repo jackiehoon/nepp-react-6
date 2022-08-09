@@ -3,12 +3,10 @@ import styled from "styled-components";
 const List = ({ data }) => {
   return (
     <Container>
-      {data.map(({ link, image, title }) => (
-        <Item key={link}>
+      {data.map(({ image, title }) => (
+        <Item>
           <Thumbnail src={image} />
-          <a href={link} target="_blank" rel="noreferrer">
-            <Name dangerouslySetInnerHTML={{ __html: title }} />
-          </a>
+          <Title>{title}</Title>
         </Item>
       ))}
     </Container>
@@ -16,15 +14,15 @@ const List = ({ data }) => {
 };
 
 const Container = styled.div`
-  margin: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
+  gap: 20px;
+  padding: 20px;
 `;
 const Item = styled.div``;
 const Thumbnail = styled.img`
   width: 100%;
 `;
-const Name = styled.p``;
+const Title = styled.p``;
 
 export default List;
