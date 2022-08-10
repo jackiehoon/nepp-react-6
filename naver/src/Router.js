@@ -9,6 +9,7 @@ import Header from "./components/organisms/Header";
 const Router = () => {
   return (
     <BrowserRouter>
+      {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Main />} />
         {/* 중첩라우팅 */}
