@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import authApis from "../../apis/auth";
@@ -15,8 +15,12 @@ import {
   BtnSubmit,
   SignUpWrapper,
 } from "../atoms/logIn";
+import { useSetRecoilState } from "recoil";
+import isLoginState from "../../stores/isLoginState";
 
 const LogIn = () => {
+  const setIslogin = useSetRecoilState(isLoginState);
+  const navigate = useNavigate();
   const [form, setForm] = useState({ userName: "", password: "" });
   const { userName, password } = form;
 
@@ -32,6 +36,9 @@ const LogIn = () => {
     if (!success) return alert(message);
 
     instance.defaults.headers.common["Authorization"] = "Bearer " + token;
+    localStorage.token = token;
+    setIslogin(true);
+    navigate("/");
   };
 
   return (
