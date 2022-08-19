@@ -1,10 +1,14 @@
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 
 import { ReactComponent as ImgHome } from "../../assets/images/home.svg";
 import { ReactComponent as ImgNewPost } from "../../assets/images/new-post.svg";
+import ModalNewPost from "./ModalNewPost";
 
 const Header = () => {
+  const [showModalNewPost, setShowModalNewPost] = useState(false);
+
   return (
     <>
       <Container>
@@ -19,7 +23,7 @@ const Header = () => {
             <Icon>
               <ImgHome />
             </Icon>
-            <Icon>
+            <Icon onClick={() => setShowModalNewPost(true)}>
               <ImgNewPost />
             </Icon>
           </Nav>
@@ -29,6 +33,10 @@ const Header = () => {
       <Wrapper>
         <Outlet />
       </Wrapper>
+
+      {showModalNewPost && (
+        <ModalNewPost onClose={() => setShowModalNewPost(false)} />
+      )}
     </>
   );
 };
